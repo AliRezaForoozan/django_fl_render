@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'channels',
 ]
 ASGI_APPLICATION = "myPro.asgi.application"
+STATIC_ROOT = BASE_DIR / "staticfiles"
 #--------------------------------------------------------------------------------------------
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
