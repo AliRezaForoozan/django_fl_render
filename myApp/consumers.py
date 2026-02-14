@@ -1,11 +1,10 @@
 from channels.generic.websocket import AsyncWebsocketConsumer
 import json
 
-class TestConsumer(AsyncWebsocketConsumer):
+class StatusConsumer(AsyncWebsocketConsumer):
     async def connect(self):
         await self.accept()
-        await self.send(json.dumps({"message": "connected"}))
+        await self.send(json.dumps({"msg": "connected"}))
 
     async def receive(self, text_data):
-        data = json.loads(text_data)
-        await self.send(json.dumps({"echo": data}))
+        await self.send(text_data)
