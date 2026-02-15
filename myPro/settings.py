@@ -47,6 +47,12 @@ INSTALLED_APPS = [
 ]
 ASGI_APPLICATION = "myPro.asgi.application"
 STATIC_ROOT = BASE_DIR / "staticfiles"
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+}
+
 #--------------------------------------------------------------------------------------------
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
