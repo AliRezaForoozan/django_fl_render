@@ -24,25 +24,15 @@ class IoTConsumer(AsyncWebsocketConsumer):
                 },
             )
 
-            # پیام از Flutter: روشن کردن LED
-            if data.get("from") == "flutter" and data.get("action") == "led_on":
-                await self.channel_layer.group_send(
-                    self.group_name,
-                    {
-                        "type": "esp.message",
-                        "payload": {"cmd": "led_on"},
-                    },
-                )
-
-            # پیام از Flutter: خاموش کردن LED
-            if data.get("from") == "flutter" and data.get("action") == "led_off":
-                await self.channel_layer.group_send(
-                    self.group_name,
-                    {
-                        "type": "esp.message",
-                        "payload": {"cmd": "led_off"},
-                    },
-                )
+        # پیام از Flutter: خاموش کردن LED
+        if data.get("from") == "flutter" and data.get("action") == "led_off":
+            await self.channel_layer.group_send(
+                self.group_name,
+                {
+                    "type": "esp.message",
+                    "payload": {"cmd": "led_off"},
+                },
+            )
     async def esp_message(self, event):
         await self.send(json.dumps({"to": "esp32", **event["payload"]}))
 
